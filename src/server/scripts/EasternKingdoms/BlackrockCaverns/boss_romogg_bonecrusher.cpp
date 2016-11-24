@@ -132,11 +132,11 @@ public:
                 Talk(SAY_SKULLCRAKER);
                 Talk(SAY_UNLEASH_SKULLCRAKER);
             }
-            else if (pcreat->GetEntry() == NPC_QUAKE)
-            {
-                // At quake summon, cast visual and spawn trigger.
-                pcreat->CastSpell(pcreat, SPELL_QUAKE_TRIGGER, true, NULL, NULL, me->GetGUID());
-            }
+            //else if (pcreat->GetEntry() == NPC_QUAKE)
+            //{
+            //    // At quake summon, cast visual and spawn trigger.
+            //    pcreat->CastSpell(pcreat, SPELL_QUAKE_TRIGGER, true, NULL, NULL, me->GetGUID());
+            //}
             else if (pcreat->GetEntry() == NPC_ANGERED_EARTH)
             {
                 // Make summoned units in combat.

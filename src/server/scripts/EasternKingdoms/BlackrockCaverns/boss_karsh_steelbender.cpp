@@ -89,7 +89,7 @@ public:
         {
             events.Reset();
             me->RemoveAllAuras();
-
+			DoCast(me, SPELL_QUECKSILVER_ARMOR);
             DespawnCreatures(NPC_BOUND_FLAMES);
         }
 
@@ -127,7 +127,7 @@ public:
                     me->SummonCreature(NPC_BOUND_FLAMES,summonPositions[r], TEMPSUMMON_CORPSE_DESPAWN);
 
                 SpawnCount = 3;
-
+			
                 return;
             }
 

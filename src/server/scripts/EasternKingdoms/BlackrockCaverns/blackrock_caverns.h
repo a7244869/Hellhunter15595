@@ -52,6 +52,7 @@ enum CreatureIds
 
     NPC_BUSTER                   = 40013,
     NPC_LUCKY                    = 40008,
+	NPC_SPOT                     = 40011,
     NPC_RUNTY                    = 40015,
     NPC_CHAINS_OF_WOE            = 40447, // BOSS_ROMOGG_BONECRUSHER
     NPC_ANGERED_EARTH            = 50376, // BOSS_ROMOGG_BONECRUSHER
@@ -75,7 +76,8 @@ enum CreatureIds
 
   // Karsh Steelbender
   NPC_BOUND_FLAMES             = 50417,
-  NPC_LAVA_SPOUT_TRIGGER       = 39842,
+  NPC_LAVA_SPOUT_TRIGGER       = 398421,
+  NPC_FLAMES                   = 51629,
     
     // Various NPCs
 

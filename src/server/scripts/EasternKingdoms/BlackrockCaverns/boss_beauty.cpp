@@ -54,9 +54,9 @@ public:
         void Reset()
         {
             BerserkerChargeTimer = urand(15000, 25000);
-            TerrifyingRoarTimer = urand(20000, 30000);
-            MagmaSpitTimer = urand(5000, 20000);
-            FlamebreakerTimer = urand(10000, 20000);
+            TerrifyingRoarTimer = urand(20000, 23000);
+            MagmaSpitTimer = urand(5000, 10000);
+            FlamebreakerTimer = urand(10000, 15000);
 
             if (IsHeroic())
             {
@@ -67,6 +67,10 @@ public:
                 if (Creature * second = GetClosestCreatureWithEntry(me, NPC_LUCKY, 100.0f))
                     if (second->isDead())
                         second->Respawn();
+
+				if (Creature * third = GetClosestCreatureWithEntry(me, NPC_SPOT, 100.0f))
+					if (third->isDead())
+						third->Respawn();
             }
         }
 
@@ -74,6 +78,18 @@ public:
         {
             if (instance)
                 instance->SetData(BOSS_BEAUTY, DONE);
+
+			if (Creature * first = GetClosestCreatureWithEntry(me, NPC_BUSTER, 100.0f))
+				if (first->isAlive())
+					first->DespawnOrUnsummon();
+
+			if (Creature * second = GetClosestCreatureWithEntry(me, NPC_LUCKY, 100.0f))
+				if (second->isAlive())
+					second->DespawnOrUnsummon();
+
+			if (Creature * third = GetClosestCreatureWithEntry(me, NPC_SPOT, 100.0f))
+				if (third->isAlive())
+					third->DespawnOrUnsummon();
         }
 
         void EnterCombat(Unit* /*target*/)
@@ -88,6 +104,9 @@ public:
 
                 if (Creature * second = GetClosestCreatureWithEntry(me, NPC_LUCKY, 100.0f))
                     DoZoneInCombat(second);
+
+				if (Creature * third = GetClosestCreatureWithEntry(me, NPC_SPOT, 100.0f))
+					DoZoneInCombat(third);
             }
         }
 
@@ -103,7 +122,7 @@ public:
 
                 me->CastSpell(me, SPELL_TERRIFYING_ROAR, false);
 
-                TerrifyingRoarTimer = urand(20000, 30000);
+                TerrifyingRoarTimer = urand(20000, 23000);
             }
             else
                 TerrifyingRoarTimer -= Diff;
@@ -115,7 +134,7 @@ public:
 
                 me->CastSpell(me, SPELL_FLAMEBREAKER, false);
 
-                FlamebreakerTimer = urand(15000, 25000);
+                FlamebreakerTimer = urand(10000, 15000);
             }
             else
                 FlamebreakerTimer -= Diff;
@@ -126,7 +145,7 @@ public:
                 if (me->IsNonMeleeSpellCasted(false))
                     return;
 
-                if (Unit * pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 60.0f, true))
+                if (Unit * pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 90.0f, true))
                     me->CastSpell(pTarget, SPELL_MAGMA_SPIT, false);
 
                 MagmaSpitTimer = urand(10000, 16000);
@@ -139,7 +158,7 @@ public:
                 if (me->IsNonMeleeSpellCasted(false))
                     return;
 
-                if (Unit * pTarget = SelectTarget(SELECT_TARGET_FARTHEST, 0, 60.0f, true))
+                if (Unit * pTarget = SelectTarget(SELECT_TARGET_FARTHEST, 0, 40.0f, true))
                     me->CastSpell(pTarget, SPELL_BERSERKER_CHARGE, false);
 
                 BerserkerChargeTimer = urand(20000, 25000);
@@ -179,8 +198,8 @@ public:
 
         void Reset()
         {
-            LavaDroolTimer = urand(15000, 25000);
-            LittleBigFlameBreathTimer = urand(10000, 20000);
+            LavaDroolTimer = urand(15000, 17000);
+            LittleBigFlameBreathTimer = urand(5000, 8000);
         }
 
         void EnterCombat(Unit* /*who*/)
@@ -211,7 +230,7 @@ public:
                 if (Unit * pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 60.0f, true))
                     me->CastSpell(pTarget, SPELL_LAVA_DROOL, false);
 
-                LavaDroolTimer = urand(15000, 25000);
+                LavaDroolTimer = urand(15000, 20000);
             }
             else
                 LavaDroolTimer -= Diff;

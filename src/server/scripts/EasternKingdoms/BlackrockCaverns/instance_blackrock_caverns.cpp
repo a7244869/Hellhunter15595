@@ -608,6 +608,74 @@ public:
     }
 };
 
+class spell_grievous_whirl : public SpellScriptLoader
+{
+public:
+	spell_grievous_whirl() : SpellScriptLoader("spell_grievous_whirl") { }
+
+	class spell_grievous_whirl_AuraScript : public AuraScript
+	{
+		PrepareAuraScript(spell_grievous_whirl_AuraScript);
+
+		void HandlePeriodic(AuraEffect const* /*aurEff*/)
+		{
+			if (GetUnitOwner()->IsFullHealth())
+			{
+				PreventDefaultAction();
+				Remove(AURA_REMOVE_BY_ENEMY_SPELL);
+			}
+		}
+
+		void Register()
+		{
+			OnEffectPeriodic += AuraEffectPeriodicFn(spell_grievous_whirl_AuraScript::HandlePeriodic, EFFECT_1, SPELL_AURA_PERIODIC_DAMAGE);
+		}
+	};
+
+	AuraScript* GetAuraScript() const
+	{
+		return new spell_grievous_whirl_AuraScript();
+	}
+};
+
+class spell_gen_count_pct_from_cur_hp : public SpellScriptLoader
+{
+public:
+	spell_gen_count_pct_from_cur_hp(char const* name, int32 damagePct = 0) : SpellScriptLoader(name), _damagePct(damagePct) { }
+
+	class spell_gen_count_pct_from_cur_hp_SpellScript : public SpellScript
+	{
+		PrepareSpellScript(spell_gen_count_pct_from_cur_hp_SpellScript)
+
+	public:
+		spell_gen_count_pct_from_cur_hp_SpellScript(int32 damagePct) : SpellScript(), _damagePct(damagePct) { }
+
+		void RecalculateDamage()
+		{
+			if (!_damagePct)
+				_damagePct = GetHitDamage();
+
+			SetHitDamage(GetHitUnit()->CountPctFromCurHealth(_damagePct));
+		}
+
+		void Register()
+		{
+			OnHit += SpellHitFn(spell_gen_count_pct_from_cur_hp_SpellScript::RecalculateDamage);
+		}
+
+	private:
+		int32 _damagePct;
+	};
+
+	SpellScript* GetSpellScript() const
+	{
+		return new spell_gen_count_pct_from_cur_hp_SpellScript(_damagePct);
+	}
+
+private:
+	int32 _damagePct;
+};
+
 void AddSC_instance_blackrock_caverns()
 {
     new instance_blackrock_caverns();
@@ -618,4 +686,6 @@ void AddSC_instance_blackrock_caverns()
     new mob_twilight_zaelot();
     new npc_raz_the_crazed();
     new at_raz_jump_down();
+	new spell_grievous_whirl();
+	new spell_gen_count_pct_from_cur_hp("spell_gen_60pct_count_pct_from_cur_hp", 60);
 }

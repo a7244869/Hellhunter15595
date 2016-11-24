@@ -2965,6 +2965,17 @@ void SpellMgr::LoadSpellCustomAttr()
             case 72444: // Mark of the Fallen Champion (Deathbringer Saurfang)
             case 72445: // Mark of the Fallen Champion (Deathbringer Saurfang)
             case 72446: // Mark of the Fallen Champion (Deathbringer Saurfang)
+			case 75272: //黑石洞穴1号 地震
+			case 75347: //地震碎裂
+			case 93459: //地震碎裂
+			case 76522: //爆炸之力
+			case 93648: //爆炸之力
+			case 76524: //重力回创
+			case 93658: //重力回创
+			case 76561: //重力打击
+			case 93656: //重力打击
+			case 76030: //美丽 狂暴冲锋
+			case 93580: //美丽 狂暴冲锋
                 spellInfo->AttributesCu |= SPELL_ATTR0_CU_IGNORE_ARMOR;
                 break;
 			// Heart of the Wild

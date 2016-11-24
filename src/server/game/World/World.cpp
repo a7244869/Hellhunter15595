@@ -400,7 +400,7 @@ void World::LoadConfigSettings(bool reload)
 
     ///- Read the player limit and the Message of the day from the config file
     SetPlayerAmountLimit(ConfigMgr::GetIntDefault("PlayerLimit", 9999));
-	SetMotd(ConfigMgr::GetStringDefault("Server", "Hellhunter кров?"));
+	SetMotd(ConfigMgr::GetStringDefault("Server", "Hellhunter degina?"));
 
 	m_int_configs[CONFIG_MAIL_TRAU] = ConfigMgr::GetIntDefault("Hellhunter.mail.trau", 3);
 	m_int_configs[CONFIG_MAIL_PLAYER] = ConfigMgr::GetIntDefault("Hellhunter.mail.player", 30);

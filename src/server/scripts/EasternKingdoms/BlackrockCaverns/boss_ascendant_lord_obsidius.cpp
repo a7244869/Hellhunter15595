@@ -68,9 +68,9 @@ public:
         {
             TransformationCounter = false;
 
-            ThunderclapTimer = urand(12000, 18000);
-            StoneBlowTimer = urand(15000, 25000);
-            TwilightCorruptionTimer = urand(10000, 20000);
+            ThunderclapTimer = urand(12000, 15000);
+            StoneBlowTimer = urand(8000, 10000);
+            TwilightCorruptionTimer = urand(5000, 7500);
 
             std::list<Creature*> shadowsList;
             GetCreatureListWithEntryInGrid(shadowsList, me, NPC_SHADOW_OF_OBSIDIUS, 60.0f);
@@ -158,7 +158,7 @@ public:
 
                 DoCastVictim(SPELL_STONE_BLOW);
 
-                StoneBlowTimer = urand(20000, 25000);
+                StoneBlowTimer = urand(8000, 10000);
             }
             else
                 StoneBlowTimer -= Diff;
@@ -171,7 +171,7 @@ public:
                 if (Unit * pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 60.0f, true))
                     me->CastSpell(pTarget, SPELL_TWILIGHT_CORRUPTION, false);
 
-                TwilightCorruptionTimer = urand(20000, 25000);
+                TwilightCorruptionTimer = urand(17000, 20000);
             }
             else
                 TwilightCorruptionTimer -= Diff;
@@ -185,7 +185,7 @@ public:
 
                     me->CastSpell(me, SPELL_THUNDERCLAP, false);
 
-                    ThunderclapTimer = urand(20000, 25000);
+                    ThunderclapTimer = urand(12000,15000);
                 }
                 else
                     ThunderclapTimer -= Diff;

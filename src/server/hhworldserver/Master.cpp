@@ -426,7 +426,7 @@ bool Master::_StartDB()
     ClearOnlineAccounts();
 
     ///- Insert version info into DB
-    WorldDatabase.PExecute("UPDATE version SET core_version = 'TER-CORE', core_revision = 'CATA'");        // One-time query
+    WorldDatabase.PExecute("UPDATE version SET core_version = 'Hellhunter', core_revision = 'CATA'");        // One-time query
 
     sWorld->LoadDBVersion();
 
