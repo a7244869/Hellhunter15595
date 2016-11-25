@@ -2,9 +2,18 @@
 
 Hellhunter1.0 版本
 
-需要工具
-1- OpenSSL >=1.0
-2- VS >= 2013
+## 加入
+不提供数据库 只有代码研究
+如果有任何商业需要 请联系QQ513157129
+
+## 需求
++ 使用平台:Windows,Linux or Mac
++ Processor supporting SSE2 
++ ACE = 5.8.3 (included for Windows) 
++ CMake = 2.8.0 
++ OpenSSL = 1.0.0 
++ GCC = 4.7.2 (Linux only) 
++ MS Visual Studio = 13 (2013)(Windows only)
 
 TODO:
 地下城重写
@@ -27,5 +36,3 @@ TODO:
 火源之界  WAIT
 巨龙之魂  WAIT
 
-
-如果有任何商业需要 请联系QQ513157129
