@@ -731,6 +731,69 @@ public:
 
 };
 
+/************************
+**npc 39670
+*************************/
+
+#define spell_furious_rage 80218 // 500%ÉËº¦
+#define spell_cleave_raz 80392 // À­¼ªË³Åü
+
+class mob_raz_the_crazed_attack : public CreatureScript
+{
+public:
+	mob_raz_the_crazed_attack() : CreatureScript("mob_raz_the_crazed_attack") {}
+
+	struct mob_raz_the_crazed_attackAI : public ScriptedAI
+	{
+		mob_raz_the_crazed_attackAI(Creature *c) : ScriptedAI(c) {}
+
+		uint32 furious_rage_time;
+		uint32 cleave_raz_time;
+
+		void Reset()
+		{
+			furious_rage_time = 5000;
+			cleave_raz_time = 2000;
+
+		}
+
+		void DamageTaken(Unit* /*attacker*/, uint32& damage)
+		{
+			if (damage >= me->GetHealth())
+				damage = me->GetHealth() - 1;
+		}
+
+		void UpdateAI(const uint32 diff)
+		{
+			if (!UpdateVictim())
+				return;
+
+			if (furious_rage_time <= diff)
+			{
+				DoCast(spell_furious_rage);
+				furious_rage_time = 20000;
+			}
+			else furious_rage_time -= diff;
+
+			if (cleave_raz_time <= diff)
+			{
+				DoCast(spell_cleave_raz);
+				cleave_raz_time = 2000;
+			}
+			else cleave_raz_time -= diff;
+
+			DoMeleeAttackIfReady();
+		}
+
+	};
+
+	CreatureAI* GetAI(Creature* pCreature) const
+	{
+		return new mob_raz_the_crazed_attackAI(pCreature);
+	}
+
+};
+
 void AddSC_mob_blackrock_caverns()
 {
 	new mob_twilight_tlame_caller();
@@ -745,4 +808,5 @@ void AddSC_mob_blackrock_caverns()
 	new mob_twilight_obsidian_borer();
 	new mob_twilight_element_warden(); 
 	new mob_defiled_earth_rager();
+	new mob_raz_the_crazed_attack();
 }

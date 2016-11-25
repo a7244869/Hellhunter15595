@@ -132,6 +132,7 @@ void AddSC_boss_karsh_steelbender();
 void AddSC_boss_beauty();
 void AddSC_boss_ascendant_lord_obsidius();
 void AddSC_mob_blackrock_caverns();
+void AddSc_teleporter_blackrock_caverns();
 void AddSC_instance_blackrock_caverns();
 void AddSC_blackrock_depths();               //Blackrock Depths
 void AddSC_boss_ambassador_flamelash();
@@ -926,6 +927,7 @@ void AddEasternKingdomsScripts()
     AddSC_boss_beauty();
     AddSC_boss_ascendant_lord_obsidius();
 	AddSC_mob_blackrock_caverns();
+	AddSc_teleporter_blackrock_caverns();
     AddSC_instance_blackrock_caverns();
     AddSC_blackrock_depths();               //Blackrock Depths
     AddSC_boss_ambassador_flamelash();

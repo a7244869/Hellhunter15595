@@ -58,6 +58,9 @@ public:
             MagmaSpitTimer = urand(5000, 10000);
             FlamebreakerTimer = urand(10000, 15000);
 
+			if (instance)
+				instance->SetData(DATA_BEAUTY_EVENT, NOT_STARTED);
+
             if (IsHeroic())
             {
                 if (Creature * first = GetClosestCreatureWithEntry(me, NPC_BUSTER, 100.0f))
@@ -77,7 +80,7 @@ public:
         void JustDied(Unit* /*Kill*/)
         {
             if (instance)
-                instance->SetData(BOSS_BEAUTY, DONE);
+				instance->SetData(DATA_BEAUTY_EVENT, DONE);
 
 			if (Creature * first = GetClosestCreatureWithEntry(me, NPC_BUSTER, 100.0f))
 				if (first->isAlive())
@@ -95,7 +98,7 @@ public:
         void EnterCombat(Unit* /*target*/)
         {
             if (instance)
-                instance->SetData(BOSS_BEAUTY, IN_PROGRESS);
+				instance->SetData(DATA_BEAUTY_EVENT, IN_PROGRESS);
 
             if (IsHeroic()) // Put pups in combat on heroic mode.
             {

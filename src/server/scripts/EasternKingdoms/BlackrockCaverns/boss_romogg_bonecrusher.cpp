@@ -46,6 +46,9 @@ enum eRomoggSpells
     SPELL_THE_SKULLCRAKER_H         = 93453,
 };
 
+
+//Position const RazSpawnPos[] = { 340.346f, 948.742f, 190.462f, 0 };
+
 class boss_romogg_bonecrusher : public CreatureScript
 {
 public:
@@ -77,7 +80,7 @@ public:
             WoundingStrikeTimer = urand(5000, 15000);
 
             if (instance)
-                instance->SetData(BOSS_ROMOGG_BONECRUSHER, NOT_STARTED);
+				instance->SetData(DATA_ROMOGG_BONECRUSHER_EVENT, NOT_STARTED);
         }
 
         void KilledUnit(Unit* /*victim*/)
@@ -90,7 +93,7 @@ public:
             Talk(SAY_DEATH);
 
             if (instance)
-                instance->SetData(BOSS_ROMOGG_BONECRUSHER, DONE);
+				instance->SetData(DATA_ROMOGG_BONECRUSHER_EVENT, DONE);
 
             if (Creature * pRaz = GetClosestCreatureWithEntry(me, NPC_RAZ_THE_CRAZED, 100.0f))
             {
@@ -98,6 +101,8 @@ public:
                 // Jump out of the prison
                 pRaz->GetMotionMaster()->MoveJump(227.6f, 949.8f, 192.6f, 12.0f, 15.0f);
             }
+
+			me->SummonCreature(NPC_RAZ_THE_CRAZED_ATTACK, 340.346f, 948.742f, 190.462f, 0.00629997f, TEMPSUMMON_TIMED_DESPAWN, 120000);
         }
 
         void EnterCombat(Unit* /*Ent*/)
@@ -107,7 +112,7 @@ public:
             me->CastSpell(me, SPELL_CALL_FOR_HELP, false);
 
             if (instance)
-                instance->SetData(BOSS_ROMOGG_BONECRUSHER, IN_PROGRESS);
+				instance->SetData(DATA_ROMOGG_BONECRUSHER_EVENT, IN_PROGRESS);
         }
 
         void JustSummoned(Creature * pcreat)

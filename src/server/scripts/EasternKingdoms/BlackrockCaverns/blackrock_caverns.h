@@ -32,10 +32,10 @@ enum Data64
 {
     DATA_ROMOGG_BONECRUSHER,
     DATA_CORLA,
-    DATA_KARSH_STEELBENDER,
+    DATA_KARSH_STEELBENDER,    
     DATA_BEAUTY,
-    DATA_ASCENDANT_LORD_OBSIDIUS,
-    DATA_RAZ_THE_CRAZED,
+    DATA_ASCENDANT_LORD_OBSIDIUS ,
+	DATA_RAZ_THE_CRAZED,
 };
 
 enum CreatureIds
@@ -84,6 +84,10 @@ enum CreatureIds
     NPC_RAZ_THE_CRAZED           = 39670,
     NPC_FINKLE_EINHORN           = 49476,
     NPC_TWILIGHT_PORTAL          = 51340,
+
+	//¹¥»÷µÄÀ­¼ª
+	NPC_RAZ_THE_CRAZED_ATTACK = 396701,
+
 };
 
 enum GameObjectIds

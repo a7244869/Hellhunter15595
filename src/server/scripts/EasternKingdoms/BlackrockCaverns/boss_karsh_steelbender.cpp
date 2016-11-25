@@ -91,6 +91,9 @@ public:
             me->RemoveAllAuras();
 			DoCast(me, SPELL_QUECKSILVER_ARMOR);
             DespawnCreatures(NPC_BOUND_FLAMES);
+
+			if (instance)
+				instance->SetData(DATA_KARSH_STEELBENDER_EVENT, NOT_STARTED);
         }
 
         void EnterCombat(Unit* /*who*/)
@@ -98,6 +101,9 @@ public:
             DoCast(me, SPELL_QUECKSILVER_ARMOR);
             events.ScheduleEvent(EVENT_CLEAVE, urand(20000, 25000));
             events.ScheduleEvent(EVENT_CHECK_ARMOR_STATE, 1000);
+
+			if (instance)
+				instance->SetData(DATA_KARSH_STEELBENDER_EVENT, IN_PROGRESS);
 
             Talk(SAY_AGGRO);
         }
@@ -197,6 +203,9 @@ public:
         {
             DespawnCreatures(NPC_BOUND_FLAMES);
             Talk(SAY_DEATH);
+
+			if (instance)
+				instance->SetData(DATA_KARSH_STEELBENDER_EVENT, DONE);
         }
 
         void KilledUnit(Unit* /*victim*/)

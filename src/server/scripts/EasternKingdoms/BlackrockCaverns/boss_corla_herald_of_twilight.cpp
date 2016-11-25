@@ -78,6 +78,9 @@ public:
             SetAddsChanneling(false);
 
             DarkCommandTimer = urand(10000, 20000);
+
+			if (instance)
+				instance->SetData(DATA_CORLA_EVENT, NOT_STARTED);
         }
 
         void KilledUnit(Unit* /*victim*/)
@@ -104,7 +107,9 @@ public:
                         (*itr2)->DespawnOrUnsummon();
 
             if (instance)
-                instance->SetData(BOSS_CORLA, DONE);
+				instance->SetData(DATA_CORLA_EVENT, DONE);
+
+			me->SummonCreature(NPC_RAZ_THE_CRAZED_ATTACK, 351.935f, 817.135f, 104.658f, 3.12541f, TEMPSUMMON_TIMED_DESPAWN, 120000);
         }
 
         void EnterCombat(Unit* /*Ent*/)
@@ -112,7 +117,7 @@ public:
             Talk(SAY_AGGRO);
 
             if (instance)
-                instance->SetData(BOSS_CORLA, IN_PROGRESS);
+				instance->SetData(DATA_CORLA_EVENT, IN_PROGRESS);
 
             me->SetUInt64Value(UNIT_FIELD_CHANNEL_OBJECT, 0);
             me->SetUInt32Value(UNIT_CHANNEL_SPELL, 0);

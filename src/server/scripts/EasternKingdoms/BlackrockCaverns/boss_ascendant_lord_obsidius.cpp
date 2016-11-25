@@ -72,6 +72,9 @@ public:
             StoneBlowTimer = urand(8000, 10000);
             TwilightCorruptionTimer = urand(5000, 7500);
 
+			if (instance)
+				instance->SetData(DATA_ASCENDANT_LORD_OBSIDIUS_EVENT, NOT_STARTED);
+
             std::list<Creature*> shadowsList;
             GetCreatureListWithEntryInGrid(shadowsList, me, NPC_SHADOW_OF_OBSIDIUS, 60.0f);
             if (shadowsList.empty())
@@ -100,7 +103,7 @@ public:
             Talk(SAY_DEATH);
 
             if (instance)
-                instance->SetData(BOSS_ASCENDANT_LORD_OBSIDIUS, DONE);
+				instance->SetData(DATA_ASCENDANT_LORD_OBSIDIUS_EVENT, DONE);
         }
 
         void EnterCombat(Unit* /*Ent*/)
@@ -108,7 +111,7 @@ public:
             Talk(SAY_AGGRO);
 
             if (instance)
-                instance->SetData(BOSS_ASCENDANT_LORD_OBSIDIUS, IN_PROGRESS);
+				instance->SetData(DATA_ASCENDANT_LORD_OBSIDIUS_EVENT, IN_PROGRESS);
         }
 
         void UpdateAI(uint32 const Diff)

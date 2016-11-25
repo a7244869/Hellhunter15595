@@ -20,7 +20,7 @@
 
 #include "SpellAuraEffects.h"
 
-#define ENCOUNTERS 5
+#define  ENCOUNTERS 5
 
 /*Boss Encounters
   Rom'Ogg Bonecrusher
@@ -161,7 +161,7 @@ public:
     {
         instance_blackrock_cavernsInstanceMapScript(InstanceMap* map) : InstanceScript(map) { }
 
-        uint32 uiEncounter[ENCOUNTERS];
+		uint32 uiEncounter[ENCOUNTERS];
 
         uint64 uiRomoggBonecrusher;
         uint64 uiCorla;
@@ -181,13 +181,13 @@ public:
 
              uiRazTheCrazed = 0;
 
-             for (uint8 i = 0 ; i < ENCOUNTERS; ++i)
+			 for (uint8 i = 0; i < ENCOUNTERS; ++i)
                  uiEncounter[i] = NOT_STARTED;
         }
 
         bool IsEncounterInProgress() const
         {
-            for (uint8 i = 0; i < ENCOUNTERS; ++i)
+			for (uint8 i = 0; i < ENCOUNTERS; ++i)
             {
                 if (uiEncounter[i] == NOT_STARTED)
                     return true;
@@ -197,27 +197,28 @@ public:
 
         void OnCreatureCreate(Creature* creature)
         {
-            switch (creature->GetEntry())
-            {
-                case BOSS_ROMOGG_BONECRUSHER:
-                    uiRomoggBonecrusher = creature->GetGUID();
-                    break;
-                case BOSS_CORLA:
-                    uiCorla = creature->GetGUID();
-                    break;
-                case BOSS_KARSH_STEELBENDER:
-                    uiKarshSteelbender = creature->GetGUID();
-                    break;
-                case BOSS_BEAUTY:
-                    uiBeauty = creature->GetGUID();
-                    break;
-                case BOSS_ASCENDANT_LORD_OBSIDIUS:
-                    uiAscendantLordObsidius = creature->GetGUID();
-                    break;
-                case NPC_RAZ_THE_CRAZED:
-                    uiRazTheCrazed = creature->GetGUID();
-                    break;
-            }
+			switch (creature->GetEntry())
+			{
+			case BOSS_ROMOGG_BONECRUSHER:
+				uiRomoggBonecrusher = creature->GetGUID();
+				break;
+			case BOSS_CORLA:
+				uiCorla = creature->GetGUID();
+				break;
+			case BOSS_KARSH_STEELBENDER:
+				uiKarshSteelbender = creature->GetGUID();
+				break;
+			case BOSS_BEAUTY:
+				uiBeauty = creature->GetGUID();
+				break;
+			case BOSS_ASCENDANT_LORD_OBSIDIUS:
+				uiAscendantLordObsidius = creature->GetGUID();
+				break;
+			case NPC_RAZ_THE_CRAZED:
+				uiRazTheCrazed = creature->GetGUID();
+				break;
+			}
+
         }
 
         uint64 GetData64(uint32 identifier) const
@@ -314,14 +315,14 @@ public:
             if (dataHead1 == 'B' && dataHead2 == 'C')
             {
                 uiEncounter[0] = data0;
-                uiEncounter[1] = data1;
-                uiEncounter[2] = data2;
-                uiEncounter[3] = data3;
-                uiEncounter[4] = data4;
+				uiEncounter[1] = data1;
+				uiEncounter[2] = data2;
+				uiEncounter[3] = data3;
+				uiEncounter[4] = data4;
 
-                for (uint8 i=0; i < ENCOUNTERS; ++i)
-                    if (uiEncounter[i] == IN_PROGRESS)
-                        uiEncounter[i] = NOT_STARTED;
+				for (uint8 i = 0; i < ENCOUNTERS; ++i)
+					if (uiEncounter[i] == IN_PROGRESS)
+						uiEncounter[i] = NOT_STARTED;
             }
             else OUT_LOAD_INST_DATA_FAIL;
 
