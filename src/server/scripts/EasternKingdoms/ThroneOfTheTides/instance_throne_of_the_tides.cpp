@@ -482,7 +482,7 @@ public:
                     continue;
 
                 std::list<Creature*> clist;
-                GetCreatureListWithEntryInGrid(clist, me, NPC_DEEP_MURLOC_DRUDGE, 30.0f);
+                GetCreatureListWithEntryInGrid(clist, me, NPC_DEEP_MURLOC_DRUDGE, 160.0f);
 
                 uint8 counter = 0;
                 for (std::list<Creature*>::iterator citr = clist.begin(); citr != clist.end(); ++citr)

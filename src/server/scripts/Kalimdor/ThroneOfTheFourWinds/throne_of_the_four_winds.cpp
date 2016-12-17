@@ -45,7 +45,6 @@ public:
     {
         npc_slipstream_raidAI(Creature* creature) : ScriptedAI(creature), isActive(true), linkedSlipstreamObject(NULL), linkedBoss(NULL), isUltimate(NULL)
         {
-            creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE | UNIT_FLAG_NOT_SELECTABLE);
 
             SlipstreamPosition = 8;
 
@@ -74,6 +73,8 @@ public:
 
         void Reset()
         {
+			//me->AddAura(87713, me)vehichleCursor;
+			me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_PACIFIED);
         }
 
         void MoveInLineOfSight(Unit* who)
@@ -190,7 +191,8 @@ public:
 
     bool OnGossipHello(Player* player, Creature* creature)
     {
-        player->TeleportTo(754, -111.186859f, 815.128662f, 221.018799f, 0.02332f);
+        //player->TeleportTo(754, -111.186859f, 815.128662f, 221.018799f, 0.02332f);
+		player->GetMotionMaster()->MoveJump(-111.186859f, 815.128662f, 221.018799f, 75.0f, 25.0f);
         return true;
     }
 };

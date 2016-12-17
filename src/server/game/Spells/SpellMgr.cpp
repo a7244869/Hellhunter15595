@@ -2925,6 +2925,10 @@ void SpellMgr::LoadSpellCustomAttr()
             case 92968:
             case 92969:
             case 92970:
+			case 86367:
+			case 93135:
+			case 93136:
+			case 93137:
                 // ONLY SPELLS WITH SPELLFAMILY_GENERIC and EFFECT_SCHOOL_DAMAGE
                 spellInfo->AttributesCu |= SPELL_ATTR0_CU_SHARE_DAMAGE;
                 break;
@@ -3096,6 +3100,9 @@ void SpellMgr::LoadSpellCustomAttr()
                 spellInfo->Effects[EFFECT_0].TargetB = TARGET_UNIT_SRC_AREA_ENTRY;
                 spellInfo->Effects[EFFECT_2].TargetB = TARGET_UNIT_SRC_AREA_ENTRY;
                 break;
+			case 86081:
+				spellInfo->Effects[EFFECT_0].TargetA = SpellImplicitTargetInfo(TARGET_UNIT_TARGET_ENEMY);
+				break;
             case 86862: // Azil - Seismic Shard
                 spellInfo->Effects[0].RadiusEntry = sSpellRadiusStore.LookupEntry(28); // 50000 Yrds
                 break;

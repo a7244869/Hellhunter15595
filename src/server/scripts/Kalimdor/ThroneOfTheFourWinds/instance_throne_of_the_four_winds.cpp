@@ -256,6 +256,21 @@ public:
                             }
                             break;
 
+						case NOT_STARTED:
+							if (Creature* Anshal = instance->GetCreature(uiAnshal))
+							{
+								SendEncounterUnit(ENCOUNTER_FRAME_DISENGAGE, Anshal);
+							}
+							if (Creature* Nezir = instance->GetCreature(uiNezir))
+							{
+								SendEncounterUnit(ENCOUNTER_FRAME_DISENGAGE, Nezir);
+							}
+							if (Creature* Rohash = instance->GetCreature(uiRohash))
+							{
+								SendEncounterUnit(ENCOUNTER_FRAME_DISENGAGE, Rohash);
+							}
+							break;
+
                         case DONE:
 
                             bool achievementReadytoGet = CheckAchivementStayChill();
@@ -361,33 +376,6 @@ public:
 
             if (data == DONE)
                 SaveToDB();
-
-            if (data == IN_PROGRESS)
-            {
-                if (Creature* Anshal = instance->GetCreature(uiAnshal))
-                    Anshal->RemoveAura(SPELL_PRE_COMBAT_EFFECT_ANSHAL);
-
-                if (Creature* Nezir = instance->GetCreature(uiNezir))
-                    Nezir->RemoveAura(SPELL_PRE_COMBAT_EFFECT_NEZIR);
-
-                if (Creature* Rohash = instance->GetCreature(uiRohash))
-                    Rohash->RemoveAura(SPELL_PRE_COMBAT_EFFECT_ROHASH);
-
-            }
-            else if (data == FAIL || data == NOT_STARTED)
-            {
-                if (Creature* Anshal = instance->GetCreature(uiAnshal))
-                    if (!Anshal->HasAura(SPELL_PRE_COMBAT_EFFECT_ANSHAL))
-                        Anshal->CastSpell(Anshal, SPELL_PRE_COMBAT_EFFECT_ANSHAL, true);
-
-                if (Creature* Nezir = instance->GetCreature(uiNezir))
-                    if (!Nezir->HasAura(SPELL_PRE_COMBAT_EFFECT_NEZIR))
-                        Nezir->CastSpell(Nezir, SPELL_PRE_COMBAT_EFFECT_NEZIR, true);
-
-                if (Creature* Rohash = instance->GetCreature(uiRohash))
-                    if (!Rohash->HasAura(SPELL_PRE_COMBAT_EFFECT_ROHASH))
-                        Rohash->CastSpell(Rohash, SPELL_PRE_COMBAT_EFFECT_ROHASH, true);
-            }
         }
 
         bool SetBossState(uint32 id, EncounterState state)
@@ -502,7 +490,7 @@ public:
         void SummonSplistreamAlakir()
         {
             for (int i=0; i<4; ++i)
-                instance->SummonCreature(NPC_SLIPSTREAM_ALAKIR, AlakirSlipstreamPositions[i]);
+				instance->SummonCreature(46045, AlakirSlipstreamPositions[i]);
         }
 
     };

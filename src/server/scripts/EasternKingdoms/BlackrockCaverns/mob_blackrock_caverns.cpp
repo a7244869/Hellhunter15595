@@ -336,6 +336,7 @@ public:
 			grievous_whirl_time = 8000;
 			shadow_strike_time = urand(13000,15000);
 			gravity_strike_time = urand(10500, 12500);
+			me->RemoveAura(75608);
 		}
 
 		void UpdateAI(const uint32 diff)

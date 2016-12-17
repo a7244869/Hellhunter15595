@@ -747,6 +747,7 @@ void AddSC_terokkar_forest();
 void AddSC_zangarmarsh();
 
 void AddSC_instance_throne_of_the_tides();      //Throne of the Tides
+void AddSC_mob_throne_of_the_tides();
 void AddSC_boss_nazjar();
 void AddSC_boss_ulthok();
 void AddSC_boss_erunak_stonespeaker();
@@ -1385,6 +1386,7 @@ void AddOutlandScripts()
     AddSC_zangarmarsh();
 
     AddSC_instance_throne_of_the_tides();      //Throne of the Tides
+	AddSC_mob_throne_of_the_tides(); 
     AddSC_boss_nazjar();
     AddSC_boss_ulthok();
     AddSC_boss_erunak_stonespeaker();
